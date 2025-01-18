@@ -12,7 +12,7 @@ export default function Api({ children, value }) {
 
   let apiKey = import.meta.env.VITE_API_KEY;
   let city = value;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?`;
 
   const submitHandler = () => {
     setSubmit((prev) => !prev);
@@ -20,7 +20,15 @@ export default function Api({ children, value }) {
 
   useEffect(() => {
     axios
-      .get(apiUrl)
+      .get(apiUrl, {
+        headers: {
+          Accept: "application/json",
+        },
+        params: {
+          q: city,
+          appid: apiKey,
+        },
+      })
       .then((response) => {
         setData(response.data);
         setLoading(false);
@@ -32,7 +40,6 @@ export default function Api({ children, value }) {
   }, [submit]);
 
   console.log(data);
-  console.log(error);
 
   return (
     <ApiContext.Provider value={{ data, loading, error, submitHandler }}>
