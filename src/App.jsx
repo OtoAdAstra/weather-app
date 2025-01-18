@@ -4,7 +4,6 @@ import Api from "./contexts/ApiContext.jsx";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  console.log(inputValue);
   return (
     <>
       <Api value={inputValue}>

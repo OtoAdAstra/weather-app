@@ -3,7 +3,7 @@ import { useApi } from "../contexts/ApiContext";
 
 // eslint-disable-next-line react/prop-types
 export default function Navbar({ value, setValue }) {
-  const { submitHandler } = useApi();
+  const { fetchData } = useApi();
   return (
     <>
       <ul className="navbar">
@@ -19,7 +19,7 @@ export default function Navbar({ value, setValue }) {
             <div className="searcg-icon-div">
               <IoSearchCircleSharp
                 className="search-icon"
-                onClick={submitHandler}
+                onClick={fetchData}
               />
             </div>
           </div>
