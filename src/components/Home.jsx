@@ -1,13 +1,15 @@
-// eslint-disable-next-line react/prop-types
-export default function Home({ city, img, temp }) {
+import { useApi } from "../contexts/ApiContext";
+
+export default function Home() {
+  const { cityWeather } = useApi();
   return (
-    <div>
+    <div className="weather">
       <div>
-        <h1>{city}</h1>
+        <span></span>
       </div>
-      <div>
-        <img src={img} alt="" />
-        <span>{temp}</span>
+      <div className="weather-data">
+        {/* <img src={} alt="" /> */}
+        <span>{(cityWeather.temp - 273.15).toFixed()}</span>
       </div>
     </div>
   );

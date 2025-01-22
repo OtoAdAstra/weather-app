@@ -12,7 +12,7 @@ export default function Navbar({ value, setValue }) {
           <div className="navbar-search">
             <input
               type="text"
-              placeholder="Enter city..."
+              placeholder="Search"
               value={value}
               onChange={(e) => setValue(e.target.value)}
             />

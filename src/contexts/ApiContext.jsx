@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const ApiContext = createContext();
 
@@ -7,7 +7,7 @@ const ApiContext = createContext();
 export default function Api({ children, value }) {
   //state variables
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [defaultCity, setDefaultCity] = useState(null);
   const [error, setError] = useState(null);
 
   //API key and URL
@@ -15,10 +15,26 @@ export default function Api({ children, value }) {
   let city = value;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?`;
 
+  //default city tbilisi
+  useEffect(() => {
+    axios
+      .get(apiUrl, {
+        headers: {
+          Accept: "application/json",
+        },
+        params: {
+          q: "Tbilisi",
+          appid: apiKey,
+        },
+      })
+      .then((response) => {
+        setDefaultCity(response.data);
+      });
+  }, []);
+
   //fetch data from the API
   const fetchData = async () => {
     try {
-      setLoading(true);
       const response = await axios.get(apiUrl, {
         headers: {
           Accept: "application/json",
@@ -31,15 +47,22 @@ export default function Api({ children, value }) {
       setData(response.data);
     } catch (error) {
       setError(error.message);
-    } finally {
-      setLoading(false);
     }
+  };
+
+  // Prepare temperature and other key data for export
+  const cityWeather = {
+    temp: data?.main?.temp || defaultCity?.main?.temp,
+    sky:
+      data?.weather?.[0]?.description || defaultCity?.weather?.[0]?.description,
+    name: data?.name || defaultCity?.name,
+    country: data?.sys?.country || defaultCity?.sys?.country,
   };
 
   console.log(data);
 
   return (
-    <ApiContext.Provider value={{ data, loading, error, fetchData }}>
+    <ApiContext.Provider value={{ data, error, fetchData, cityWeather }}>
       {children}
     </ApiContext.Provider>
   );
