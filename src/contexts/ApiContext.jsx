@@ -55,7 +55,7 @@ export default function Api({ children, value }) {
     temp: data?.main?.temp || defaultCity?.main?.temp,
     sky:
       data?.weather?.[0]?.description || defaultCity?.weather?.[0]?.description,
-    name: data?.name || defaultCity?.name,
+    city: data?.name || defaultCity?.name,
     country: data?.sys?.country || defaultCity?.sys?.country,
   };
 

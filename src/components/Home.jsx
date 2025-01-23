@@ -5,7 +5,9 @@ export default function Home() {
   return (
     <div className="weather">
       <div>
-        <span></span>
+        <span>
+          {cityWeather.city}, {cityWeather.country}
+        </span>
       </div>
       <div className="weather-data">
         {/* <img src={} alt="" /> */}
