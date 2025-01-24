@@ -4,7 +4,6 @@ export default function WeatherImage({ sky }) {
     "few clouds": "few-clouds.png",
     "scattered clouds": "scattered-clouds.png",
     "broken clouds": "broken-clouds.png",
-    "shower rain": "shower-rain.png",
     rain: "rain.png",
     thunderstorm: "thunderstorm.png",
     snow: "snow.png",
