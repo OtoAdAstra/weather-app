@@ -1,20 +1,10 @@
+// eslint-disable-next-line react/prop-types
 export default function WeatherImage({ sky }) {
   const weatherImages = {
-    "clear sky": "clear-sky.png",
-    "few clouds": "few-clouds.png",
-    "scattered clouds": "scattered-clouds.png",
-    "broken clouds": "broken-clouds.png",
-    rain: "rain.png",
-    thunderstorm: "thunderstorm.png",
-    snow: "snow.png",
-    mist: "mist.png",
+    "clear sky": "clear-sky.webp",
   };
 
   return (
-    <img
-      src={`/images/${weatherImages[sky]}`}
-      alt={sky}
-      className="weather-image"
-    />
+    <img src={`/images/${weatherImages[sky]}`} className="weather-image" />
   );
 }

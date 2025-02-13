@@ -1,4 +1,5 @@
 import { useApi } from "../contexts/ApiContext";
+import WeatherImage from "./WeatherImage";
 
 export default function Home() {
   const { cityWeather } = useApi();
@@ -10,8 +11,8 @@ export default function Home() {
         </span>
       </div>
       <div className="weather-data">
-        {/* <img src={} alt="" /> */}
-        <span>{(cityWeather.temp - 273.15).toFixed()}</span>
+        <WeatherImage sky={cityWeather.sky} />
+        <span>{(cityWeather.temp - 273.15).toFixed()} °C</span>
       </div>
     </div>
   );
