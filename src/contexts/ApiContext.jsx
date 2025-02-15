@@ -53,16 +53,25 @@ export default function Api({ children, value }) {
   // Prepare temperature and other key data for export
   const cityWeather = {
     temp: data?.main?.temp || defaultCity?.main?.temp,
-    sky:
-      data?.weather?.[0]?.description || defaultCity?.weather?.[0]?.description,
+    sky: data?.weather?.[0]?.main || defaultCity?.weather?.[0]?.main,
     city: data?.name || defaultCity?.name,
     country: data?.sys?.country || defaultCity?.sys?.country,
+    icon: data?.weather?.[0]?.icon || defaultCity?.weather?.[0]?.icon,
   };
+
+  function isDay() {
+    var str = cityWeather.icon;
+    if (str) {
+      const lastChar = str.charAt(str.length - 1);
+      return lastChar === "d";
+    }
+    return false;
+  }
 
   console.log(data);
 
   return (
-    <ApiContext.Provider value={{ data, error, fetchData, cityWeather }}>
+    <ApiContext.Provider value={{ fetchData, error, cityWeather, isDay }}>
       {children}
     </ApiContext.Provider>
   );

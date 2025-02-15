@@ -4,9 +4,9 @@ import WeatherImage from "./WeatherImage";
 export default function Home() {
   const { cityWeather } = useApi();
   return (
-    <div className="weather">
+    <section className="weather">
       <div>
-        <span>
+        <span className="weather-city">
           {cityWeather.city}, {cityWeather.country}
         </span>
       </div>
@@ -14,6 +14,6 @@ export default function Home() {
         <WeatherImage sky={cityWeather.sky} />
         <span>{(cityWeather.temp - 273.15).toFixed()} °C</span>
       </div>
-    </div>
+    </section>
   );
 }

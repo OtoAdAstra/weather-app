@@ -1,11 +1,12 @@
-import { IoSearchCircleSharp } from "react-icons/io5";
+import { IoSearchOutline } from "react-icons/io5";
 import { useApi } from "../contexts/ApiContext";
 
 // eslint-disable-next-line react/prop-types
 export default function Navbar({ value, setValue }) {
   const { fetchData } = useApi();
+
   return (
-    <>
+    <header>
       <ul className="navbar">
         <li className="navbar-title">Weather.</li>
         <li>
@@ -15,16 +16,18 @@ export default function Navbar({ value, setValue }) {
               placeholder="Search"
               value={value}
               onChange={(e) => setValue(e.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  fetchData();
+                }
+              }}
             />
             <div className="searcg-icon-div">
-              <IoSearchCircleSharp
-                className="search-icon"
-                onClick={fetchData}
-              />
+              <IoSearchOutline className="search-icon" onClick={fetchData} />
             </div>
           </div>
         </li>
       </ul>
-    </>
+    </header>
   );
 }
