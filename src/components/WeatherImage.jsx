@@ -4,6 +4,19 @@ import { useApi } from "../contexts/ApiContext";
 export default function WeatherImage({ sky }) {
   const { isDay } = useApi();
 
+  const smokeWeatherTypes = [
+    "Atmosphere",
+    "Mist",
+    "Smoke",
+    "Haze",
+    "Dust",
+    "Fog",
+    "Sand",
+    "Squall",
+    "Ash",
+    "Tornado",
+  ];
+
   const weatherImages = {
     Clear: isDay() ? "sunny.webp" : "clear-night.webp",
     Thunderstorm: "thunderstorm.webp",
@@ -11,7 +24,9 @@ export default function WeatherImage({ sky }) {
     Rain: "rain.webp",
     Snow: "snow.webp",
     Clouds: isDay() ? "cloudy.webp" : "clear-night.webp",
-    Atmosphere: "smoke.webp",
+    ...Object.fromEntries(
+      smokeWeatherTypes.map((type) => [type, "smoke.webp"])
+    ),
   };
 
   return (
