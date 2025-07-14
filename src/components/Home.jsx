@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useApi } from "../contexts/ApiContext";
 import WeatherImage from "./WeatherImage";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { CgClose } from "react-icons/cg";
 
 export default function Home() {
   const { cityWeather } = useApi();
   const [details, setDetails] = useState(false);
 
-  console.log(details);
+  function toggleDetails() {
+    setDetails(!details);
+  }
 
   return (
     <section className="weather">
@@ -16,7 +19,7 @@ export default function Home() {
         whileTap={{ scale: 0.8 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: !details ? 1 : 0 }}>
-        <span className="weather-city" onClick={() => setDetails(true)}>
+        <span className="weather-city" onClick={() => toggleDetails()}>
           {cityWeather.city}
         </span>
       </motion.div>
@@ -31,6 +34,21 @@ export default function Home() {
           {(cityWeather.temp - 273.15).toFixed()} °C
         </span>
       </motion.div>
+      <AnimatePresence>
+        {details && (
+          <motion.div
+            className="weather-details"
+            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: details ? 1 : 0 }}
+            exit={{ opacity: 0 }}>
+            <CgClose
+              className="weather-details-close"
+              onClick={() => toggleDetails()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
