@@ -38,7 +38,7 @@ export default function Home() {
         {details && (
           <motion.div
             className="weather-details"
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.1 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: details ? 1 : 0 }}
             exit={{ opacity: 0 }}>
@@ -58,11 +58,17 @@ export default function Home() {
                 <span className="weather-details-data-span">
                   {cityDetails.humidity} %
                 </span>
-              </p>{" "}
+              </p>
               <p>
                 Pressure:
                 <span className="weather-details-data-span">
                   {cityDetails.pressure} hPa
+                </span>
+              </p>
+              <p>
+                Wind speed:
+                <span className="weather-details-data-span">
+                  {cityDetails.windSpeed} m/s
                 </span>
               </p>
             </div>
