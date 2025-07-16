@@ -59,6 +59,14 @@ export default function Api({ children, value }) {
     icon: data?.weather?.[0]?.icon || defaultCity?.weather?.[0]?.icon,
   };
 
+  // Prepare detailed weather data
+  const cityDetails = {
+    feelsLike: data?.main?.feels_like || defaultCity?.main?.feels_like,
+    humidity: data?.main?.humidity || defaultCity?.main?.humidity,
+    pressure: data?.main?.pressure || defaultCity?.main?.pressure,
+    windSpeed: data?.wind?.speed || defaultCity?.wind?.speed,
+  };
+
   function isDay() {
     var str = cityWeather.icon;
     if (str) {
@@ -71,7 +79,8 @@ export default function Api({ children, value }) {
   console.log(data);
 
   return (
-    <ApiContext.Provider value={{ fetchData, error, cityWeather, isDay }}>
+    <ApiContext.Provider
+      value={{ fetchData, error, cityWeather, isDay, cityDetails }}>
       {children}
     </ApiContext.Provider>
   );

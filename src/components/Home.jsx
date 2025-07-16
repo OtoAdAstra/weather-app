@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { CgClose } from "react-icons/cg";
 
 export default function Home() {
-  const { cityWeather } = useApi();
+  const { cityWeather, cityDetails } = useApi();
   const [details, setDetails] = useState(false);
 
   function toggleDetails() {
@@ -46,6 +46,26 @@ export default function Home() {
               className="weather-details-close"
               onClick={() => toggleDetails()}
             />
+            <div className="weather-details-data">
+              <p>
+                Feels like:
+                <span className="weather-details-data-span">
+                  {(cityDetails.feelsLike - 273.15).toFixed()} °C
+                </span>
+              </p>
+              <p>
+                Humidity:
+                <span className="weather-details-data-span">
+                  {cityDetails.humidity} %
+                </span>
+              </p>{" "}
+              <p>
+                Pressure:
+                <span className="weather-details-data-span">
+                  {cityDetails.pressure} hPa
+                </span>
+              </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
