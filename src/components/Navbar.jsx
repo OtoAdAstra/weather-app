@@ -23,7 +23,11 @@ export default function Navbar({ value, setValue }) {
               }}
             />
             <div className="searcg-icon-div">
-              <IoSearchOutline className="search-icon" onClick={fetchData} />
+              <IoSearchOutline
+                className="search-icon"
+                onClick={fetchData}
+                size={22}
+              />
             </div>
           </div>
         </li>

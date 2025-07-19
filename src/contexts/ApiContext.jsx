@@ -65,6 +65,7 @@ export default function Api({ children, value }) {
     humidity: data?.main?.humidity || defaultCity?.main?.humidity,
     pressure: data?.main?.pressure || defaultCity?.main?.pressure,
     windSpeed: data?.wind?.speed || defaultCity?.wind?.speed,
+    seaLevel: data?.main?.sea_level || defaultCity?.main?.sea_level,
   };
 
   function isDay() {

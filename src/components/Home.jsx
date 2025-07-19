@@ -18,10 +18,10 @@ export default function Home() {
         whileHover={{ scale: 1.2 }}
         whileTap={{ scale: 0.8 }}
         initial={{ opacity: 0 }}
-        animate={{ opacity: !details ? 1 : 0 }}>
-        <span className="weather-city" onClick={() => toggleDetails()}>
-          {cityWeather.city}
-        </span>
+        animate={{ opacity: !details ? 1 : 0 }}
+        onClick={() => toggleDetails()}
+        style={{ cursor: "pointer" }}>
+        <span className="weather-city">{cityWeather.city}</span>
       </motion.div>
 
       <motion.div
@@ -69,6 +69,12 @@ export default function Home() {
                 Wind speed:
                 <span className="weather-details-data-span">
                   {cityDetails.windSpeed} m/s
+                </span>
+              </p>
+              <p>
+                Sea level:
+                <span className="weather-details-data-span">
+                  {cityDetails.seaLevel} m
                 </span>
               </p>
             </div>
